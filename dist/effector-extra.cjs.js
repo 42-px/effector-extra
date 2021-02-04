@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var r=require("effector");exports.attachWrapper=function(e){return r.attach({mapParams:r=>e.mapParams(r),effect:r.createEffect({handler:r=>{let t=e.effect(r);return e.mapResult&&(t=t.then(t=>e.mapResult({params:r,result:t}))),e.mapError&&(t=t.catch(t=>{throw e.mapError({params:r,error:t})})),t}})})};
+//# sourceMappingURL=effector-extra.cjs.js.map
