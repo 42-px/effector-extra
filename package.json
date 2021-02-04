@@ -1,6 +1,6 @@
 {
   "name": "@42px/effector-extra",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "helpful effector utils",
   "main": "./dist/effector-extra.cjs.js",
   "jsnext:main": "./dist/index.js",
@@ -34,8 +34,10 @@
     "@babel/core": "^7.11.1",
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
     "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.12.13",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.12.13",
     "@types/jest": "^26.0.9",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
@@ -55,8 +57,5 @@
     "dist"
   ],
   "typings": "./dist",
-  "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.12.13",
-    "@babel/runtime": "^7.12.13"
-  }
+  "dependencies": {}
 }
