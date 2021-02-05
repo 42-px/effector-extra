@@ -36,3 +36,13 @@ const loginReqFx = attachWrapper({
     },
 })
 ```
+## Event batcher
+This util is useful when you have a non-consistent flow of many events. It batches events payload in array if the sequence of events are fired faster then defined delay. Otherwise event fired immediatly 
+
+```ts
+import { batchEvents } from '@42px/effector-event-batcher'
+import { matrixDomain } from './domain'
+
+export const roomMessage = matrixDomain.event<MessageEvent>()
+export const roomMessageBatch = batchEvents(roomMessage, 500)
+```
