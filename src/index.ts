@@ -1,2 +1,2 @@
 export { attachWrapper } from "./attach-wrapper"
-export { batchEvents } from "effector-event-batcher"
+export { batchEvents } from "./effector-event-batcher"

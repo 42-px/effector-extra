@@ -1,5 +1,5 @@
 import { createEffect, createStore } from "effector"
-import { attachWrapper } from "./attach-wrapper"
+import { attachWrapper } from "./index"
 
 test("attach-wrapper map result", async () => {
   type Req = {
