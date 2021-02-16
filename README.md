@@ -53,3 +53,29 @@ import { matrixDomain } from './domain'
 export const roomMessage = matrixDomain.event<MessageEvent>()
 export const roomMessageBatch = batchEvents(roomMessage, 500)
 ```
+
+
+### mockEffects/mockStores
+
+Type-safe helper for mock effects when using fork (useful for testing):
+
+```ts
+const mockCartStorage = () => {
+  let cartStorage: CartItem[] = [] 
+
+  return mockEffects()
+    .set(writeCartFx, (cart) => {
+      cartStorage = cart
+    })
+    .set(readCartFx, () => cartStorage)
+}
+
+let scope: Scope
+
+
+test('add to cart', async () => {
+  scope = fork(root, {
+    handlers: mockCartStorage(),
+  })
+})
+```
