@@ -1,4 +1,4 @@
-import { createDomain, Domain, Effect } from "effector"
+import { Domain, Effect } from "effector"
 import { attachWrapper } from "../attach-wrapper"
 
 type Params<P, D, F> = {

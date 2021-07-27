@@ -34,7 +34,10 @@ export default {
     ],
     plugins: [
         terser(),
-        babel(),
         typescript(),
+        babel({
+            exclude: "node_modules/**",
+            extensions: [".js", ".ts", ".tsx"],
+        }),
     ]
 }
