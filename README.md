@@ -43,6 +43,28 @@ const loginReqFx = attachWrapper({
     },
 })
 ```
+
+### createService
+
+```ts
+const domain = createDomain()
+// real request effect
+const requestFx = domain.effect<ReqParams, Response, Error>()
+
+const myService = createService({
+    domain: createDomain(),
+    effect: requestFx,
+})
+
+// some method
+const getNewsFx = myService.createMethod({
+    mapParams: (newsId: number) => ({
+        url: `/news/${newsId}`,
+    }),
+    mapResult: ({ result }) => result.data,
+})
+```
+
 ### Event batcher
 This util is useful when you have a non-consistent flow of many events. It batches events payload in array if the sequence of events are fired faster then defined delay. Otherwise event fired immediatly 
 

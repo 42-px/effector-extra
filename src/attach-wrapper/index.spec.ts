@@ -1,4 +1,10 @@
-import { createEffect, createStore } from "effector"
+import {
+    allSettled,
+    createDomain,
+    createEffect,
+    createStore,
+    fork
+} from "effector"
 import { attachWrapper } from "./index"
 
 test("attach-wrapper map result", async () => {
@@ -69,4 +75,36 @@ test("attach-wrapper map result", async () => {
   } catch (err) {
       expect(err.name).toBe("InvalidCredentials")
   }
+})
+
+
+test("mock attached effect", async () => {
+    const domain = createDomain()
+    const originalEffectFx = domain.effect((data: string) => {
+        return "real data" as string
+    })
+
+    const attachedEffectFx = attachWrapper({
+        domain,
+        effect: originalEffectFx,
+        mapParams: (data: number) => `${data}`,
+        mapResult: (result) => result, 
+    })
+
+    const resultWatcher = jest.fn()
+    attachedEffectFx.doneData.watch(resultWatcher)
+
+    
+    const scope = fork(domain, {
+        handlers: new Map()
+            .set(attachedEffectFx, (data: number) => "mock"),
+    })
+
+    await allSettled(attachedEffectFx, {
+        scope,
+        params: 4,
+    })
+
+    expect(resultWatcher.mock.calls.length).toBe(1)
+    expect(resultWatcher.mock.calls[0][0]).toBe("mock")
 })

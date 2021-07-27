@@ -8,8 +8,8 @@
     ]
   ],
   "plugins": [
-    "@babel/plugin-proposal-optional-chaining",
     "@effector/babel-plugin",
+    "@babel/plugin-proposal-optional-chaining",
     [
       "module-resolver",
       {
@@ -25,6 +25,7 @@
         "@babel/preset-typescript"
       ],
       "plugins": [
+        "@effector/babel-plugin",
         "@babel/plugin-transform-modules-commonjs",
         [
           "@babel/plugin-transform-runtime",
