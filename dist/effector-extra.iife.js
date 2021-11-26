@@ -1,2 +1,220 @@
-var EffectorExtra=function(e,t){"use strict";function r(e){var r=e.domain?e.domain.effect("effect",{name:"effect",sid:"-xn2rd6"}):t.createEffect("effect",{name:"effect",sid:"-x614yz"});return r.use((function(t){var r=e.effect(e.mapParams(t),{name:"promise",sid:"-9qez7q"});return e.mapResult&&(r=r.then((function(r){return e.mapResult({params:t,result:r})}))),e.mapError&&(r=r.catch((function(r){throw e.mapError({params:t,error:r})}))),r})),r}function n(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function o(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n)}return r}function c(e){return function(e){if(Array.isArray(e))return a(e)}(e)||function(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}(e)||function(e,t){if(!e)return;if("string"==typeof e)return a(e,t);var r=Object.prototype.toString.call(e).slice(8,-1);"Object"===r&&e.constructor&&(r=e.constructor.name);if("Map"===r||"Set"===r)return Array.from(e);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return a(e,t)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function a(e,t){(null==t||t>e.length)&&(t=e.length);for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r];return n}return e.attachWrapper=r,e.batchEvents=function(e,r){var n,o=t.createEvent("event",{name:"event",sid:"-qsq21n"}),a=t.createEvent("pushStore",{name:"pushStore",sid:"-99i15u"}),i=t.createEvent("resetStore",{name:"resetStore",sid:"-ka34j3"}),u=t.createEvent("timeoutEnd",{name:"timeoutEnd",sid:"-8qf3eg"}),f=t.createStore([],{name:"$storedEvents",sid:"tj0mgu"});return f.on(a,(function(e,t){return[].concat(c(e),[t])})).reset(i),e.watch((function(e){void 0!==n?(clearTimeout(n),a(e)):o([e]),n=setTimeout((function(){n=void 0,u()}),r)})),t.guard({source:t.sample(f,u,(function(e){return e})),filter:f.map((function(e){return Boolean(e.length)}))}).watch((function(e){o(e),i()})),o},e.createService=function(e){var t=e.domain,c=e.effect;return{createMethod:function(e){return r(function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?o(Object(r),!0).forEach((function(t){n(e,t,r[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):o(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))}))}return e}({domain:t,effect:c},e))}}},e.mockEffects=function(){return new Map},e.mockStores=function(){return new Map},e}({},effector);
+var EffectorExtra = (function (exports, effector) {
+  'use strict';
+
+  function attachWrapper(args) {
+    var handler = function handler(params) {
+      var promise = args.effect(args.mapParams(params), {
+        name: "promise",
+        sid: "-9qez7q"
+      });
+
+      if (args.mapResult) {
+        promise = promise.then(function (result) {
+          return args.mapResult({
+            params: params,
+            result: result
+          });
+        });
+      }
+
+      if (args.mapError) {
+        promise = promise["catch"](function (error) {
+          throw args.mapError({
+            params: params,
+            error: error
+          });
+        });
+      }
+
+      return promise;
+    };
+
+    var effect = args.domain ? args.domain.effect({
+      name: "effect",
+      sid: "-xn2rd6"
+    }) : effector.createEffect({
+      name: "effect",
+      sid: "-x614yz"
+    });
+    effect.use(handler);
+    return effect;
+  }
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
+  function _toConsumableArray(arr) {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+  }
+
+  function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+  }
+
+  function _iterableToArray(iter) {
+    if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  function batchEvents(trigger, timeout) {
+    var event = effector.createEvent({
+      name: "event",
+      sid: "-qsq21n"
+    });
+    var pushStore = effector.createEvent({
+      name: "pushStore",
+      sid: "-99i15u"
+    });
+    var resetStore = effector.createEvent({
+      name: "resetStore",
+      sid: "-ka34j3"
+    });
+    var timeoutEnd = effector.createEvent({
+      name: "timeoutEnd",
+      sid: "-8qf3eg"
+    });
+    var $storedEvents = effector.createStore([], {
+      name: "$storedEvents",
+      sid: "tj0mgu"
+    });
+    $storedEvents.on(pushStore, function (prevValue, value) {
+      return [].concat(_toConsumableArray(prevValue), [value]);
+    }).reset(resetStore);
+    var timeoutId;
+    trigger.watch(function (payload) {
+      if (timeoutId !== undefined) {
+        clearTimeout(timeoutId);
+        pushStore(payload);
+      } else {
+        event([payload]);
+      }
+
+      timeoutId = setTimeout(function () {
+        timeoutId = undefined;
+        timeoutEnd();
+      }, timeout);
+    });
+    effector.guard({
+      ɔ: [{
+        source: effector.sample({
+          ɔ: [$storedEvents, timeoutEnd, function (store) {
+            return store;
+          }],
+          config: {
+            name: "source",
+            sid: "4pit6z"
+          }
+        }),
+        filter: $storedEvents.map(function (store) {
+          return Boolean(store.length);
+        })
+      }],
+      config: {
+        sid: "c06kr4"
+      }
+    }).watch(function (payload) {
+      event(payload);
+      resetStore();
+    });
+    return event;
+  }
+
+  var mockEffects = function mockEffects() {
+    return new Map();
+  };
+  var mockStores = function mockStores() {
+    return new Map();
+  };
+
+  function createService(_ref) {
+    var domain = _ref.domain,
+        effect = _ref.effect;
+
+    function createMethod(args) {
+      return attachWrapper(_objectSpread2({
+        domain: domain,
+        effect: effect
+      }, args));
+    }
+
+    return {
+      createMethod: createMethod
+    };
+  }
+
+  exports.attachWrapper = attachWrapper;
+  exports.batchEvents = batchEvents;
+  exports.createService = createService;
+  exports.mockEffects = mockEffects;
+  exports.mockStores = mockStores;
+
+  return exports;
+
+}({}, effector));
 //# sourceMappingURL=effector-extra.iife.js.map

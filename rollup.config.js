@@ -33,7 +33,7 @@ export default {
         }
     ],
     plugins: [
-        terser(),
+        // terser(),
         typescript(),
         babel({
             exclude: "node_modules/**",
