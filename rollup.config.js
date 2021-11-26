@@ -1,11 +1,15 @@
-import babel from "rollup-plugin-babel"
+import babel from "@rollup/plugin-babel"
+import typescript from "@rollup/plugin-typescript"
+import { nodeResolve } from "@rollup/plugin-node-resolve"
+import commonjs from "@rollup/plugin-commonjs"
 import { terser } from "rollup-plugin-terser"
-import typescript from "rollup-plugin-typescript2"
 import pkg from "./package.json"
+
+const extensions = [".js", ".ts"]
 
 export default {
     external: [
-        "effector",
+        "effector"
     ],
     input: "src/index.ts",
     output: [
@@ -24,20 +28,29 @@ export default {
             format: "umd",
             sourcemap: true,
             name: "EffectorExtra",
+            globals: {
+                "effector": "effector"
+            },
         },
         {
             file: "./dist/effector-extra.iife.js",
             format: "iife",
             name: "EffectorExtra",
             sourcemap: true,
+            globals: {
+                "effector": "effector"
+            },
         }
     ],
     plugins: [
-        terser(),
-        typescript(),
+        typescript({ tsconfig: "./tsconfig.json" }),
         babel({
+            babelHelpers: "bundled",
             exclude: "node_modules/**",
-            extensions: [".js", ".ts", ".tsx"],
+            extensions,
         }),
+        nodeResolve({ extensions }),
+        commonjs({ extensions }),
+        terser(),
     ]
 }

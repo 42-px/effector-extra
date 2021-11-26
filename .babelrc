@@ -3,26 +3,21 @@
     [
       "@babel/preset-env",
       {
-        "modules": false
+        "modules": false,
+        "targets": {
+          "node": "current"
+        }
       }
     ]
   ],
   "plugins": [
     [
-      "@effector/babel-plugin",
+      "effector/babel-plugin",
       {
         "factories": [
-          "src/attach-wrapper"
+          "src/attach-wrapper",
+          "src/effector-event-batcher"
         ]
-      }
-    ],
-    "@babel/plugin-proposal-optional-chaining",
-    [
-      "module-resolver",
-      {
-        "alias": {
-          "@": "./src"
-        }
       }
     ]
   ],
@@ -32,18 +27,7 @@
         "@babel/preset-typescript"
       ],
       "plugins": [
-        "@babel/plugin-transform-modules-commonjs",
-        [
-          "@babel/plugin-transform-runtime",
-          {
-            "regenerator": true
-          }
-        ],
-      ]
-    },
-    "development": {
-      "presets": [
-        "@babel/preset-typescript"
+        "@babel/plugin-transform-modules-commonjs"
       ]
     }
   }

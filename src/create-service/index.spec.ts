@@ -3,7 +3,7 @@ import { createService } from "./index"
 
 test("create service", async () => {
     const domain = createDomain()
-    const myEffectFx = domain.effect<string, string, Error>((params) => {
+    const myEffectFx = domain.effect<string, string, Error>(() => {
         return "value"
     })
 
@@ -14,7 +14,7 @@ test("create service", async () => {
 
     const myMethodFx = service.createMethod({
         mapParams: (params: number) => `${params}`,
-        mapResult: ({ params }) => "result",
+        mapResult: () => "result",
     })
 
     const result = await myMethodFx(4)
@@ -24,7 +24,7 @@ test("create service", async () => {
 
 test("mock some service method", async () => {
     const domain = createDomain()
-    const myEffectFx = domain.effect<string, string, Error>((params) => {
+    const myEffectFx = domain.effect<string, string, Error>(() => {
         return "real value"
     })
 
@@ -46,7 +46,7 @@ test("mock some service method", async () => {
     myMethodFx.doneData.watch(watchResult)
 
     const scope = fork(domain, {
-        handlers: new Map().set(myMethodFx, (params: number) => "mock")
+        handlers: new Map().set(myMethodFx, () => "mock")
     })
 
     await allSettled(myMethodFx, {

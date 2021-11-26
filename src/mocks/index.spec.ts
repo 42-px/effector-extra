@@ -1,4 +1,4 @@
-import { fork, allSettled, Scope, createDomain, forward } from "effector"
+import { fork, allSettled, createDomain, forward } from "effector"
 import { mockEffects, mockStores } from "./index"
 
 
