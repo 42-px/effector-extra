@@ -1,7 +1,9 @@
-import { Effect, Store } from 'effector'
+import { Effect, Store } from "effector"
 
 interface EffectsMapper extends Map<any, any> {
-    set<P, D, E>(effect: Effect<P, D, E>, handler: (params: P) => D | Promise<D>): this;
+    set<P, D, E>(
+        effect: Effect<P, D, E>, handler: (params: P) => D | Promise<D>
+    ): this
 }
 
 export const mockEffects = (): EffectsMapper => {
@@ -9,9 +11,9 @@ export const mockEffects = (): EffectsMapper => {
 }
 
 interface StoreMapper extends Map<any, any> {
-  set<V>(store: Store<V>, value: V): this;
+  set<V>(store: Store<V>, value: V): this
 }
 
 export const mockStores = (): StoreMapper => {
-  return new Map()
+    return new Map()
 }

@@ -3,7 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "modules": false
+        "modules": false,
+        "targets": {
+          "node": "current"
+        }
       }
     ]
   ],
@@ -16,8 +19,7 @@
           "src/effector-event-batcher"
         ]
       }
-    ],
-    "@babel/plugin-transform-runtime"
+    ]
   ],
   "env": {
     "test": {

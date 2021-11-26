@@ -1,27 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2019",
-    "jsx": "react",
-    "sourceMap": true,
+    "target": "ESNext",
     "baseUrl": "src",
     "strict": true,
-    "outDir": "./dist",
-    "declaration": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "module": "es2015",
-    "moduleResolution": "node",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-    },
+    "moduleResolution": "node"
   },
   "include": [
     "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  ]
 }
