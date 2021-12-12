@@ -8,7 +8,7 @@
   "umd:main": "./dist/effector-extra.umd.js",
   "browser": "./dist/index.js",
   "scripts": {
-    "emit-dts": "dts-bundle-generator --project tsconfig.declarations.json --out-file ./dist/index.d.ts ./src/index.ts",
+    "emit-dts": "dts-bundle-generator --project tsconfig.json --out-file ./dist/index.d.ts ./src/index.ts",
     "build:bundles": "rollup -c rollup.config.js",
     "build": "npm run emit-dts && npm run build:bundles",
     "test": "jest",
