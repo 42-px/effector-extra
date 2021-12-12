@@ -1,6 +1,6 @@
 {
   "name": "@42px/effector-extra",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "helpful effector utils",
   "main": "./dist/effector-extra.cjs.js",
   "jsnext:main": "./dist/index.js",
