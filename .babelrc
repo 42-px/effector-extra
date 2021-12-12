@@ -1,10 +1,15 @@
 {
   "presets": [
+    "@babel/preset-typescript",
     [
       "@babel/preset-env",
       {
+        "useBuiltIns": "entry",
+        "shippedProposals": true,
+        "corejs": 3,
         "modules": false,
         "targets": {
+          "chrome": "70",
           "node": "current"
         }
       }
@@ -23,9 +28,6 @@
   ],
   "env": {
     "test": {
-      "presets": [
-        "@babel/preset-typescript"
-      ],
       "plugins": [
         "@babel/plugin-transform-modules-commonjs"
       ]
