@@ -12,7 +12,8 @@
     "build:bundles": "rollup -c rollup.config.js",
     "build": "npm run emit-dts && npm run build:bundles",
     "test": "jest",
-    "lint": "eslint \"./**/*.{js,ts,tsx}\" --fix"
+    "lint": "eslint \"./**/*.{js,ts,tsx}\"",
+    "lint:fix": "eslint \"./**/*.{js,ts,tsx}\" --fix"
   },
   "exports": {
     "import": "./dist/index.js",
