@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/42-px/effector-extra#readme",
   "peerDependencies": {
-    "effector": "^21.4.0"
+    "effector": "^21.8.12"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
