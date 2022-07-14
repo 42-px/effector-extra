@@ -30,11 +30,11 @@ export function batchEvents<T>(trigger: Event<T>, timeout: number): Event<T[]> {
         }, timeout)
     })
     guard({
-        source: sample(
-            $storedEvents,
-            timeoutEnd,
-            (store) => store,
-        ),
+        source: sample({
+            source: $storedEvents,
+            clock: timeoutEnd,
+            fn: (store) => store,
+        }),
         filter: $storedEvents.map((store) => Boolean(store.length)),
     }).watch((payload) => {
         event(payload)
