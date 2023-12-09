@@ -3,7 +3,6 @@ import {
     createStore,
     Event,
     EventCallable,
-    guard,
     sample,
 } from "effector"
 
@@ -33,7 +32,7 @@ export function batchEvents<T>(
             timeoutEnd()
         }, timeout)
     })
-    guard({
+    sample({
         source: sample({
             source: $storedEvents,
             clock: timeoutEnd,
