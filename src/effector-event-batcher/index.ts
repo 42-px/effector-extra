@@ -7,7 +7,10 @@ import {
     sample,
 } from "effector"
 
-export function batchEvents<T>(trigger: Event<T>, timeout: number): EventCallable<T[]> {
+export function batchEvents<T>(
+    trigger: Event<T>,
+    timeout: number
+): EventCallable<T[]> {
     const event = createEvent<T[]>()
     const pushStore = createEvent<T>()
     const resetStore = createEvent()
